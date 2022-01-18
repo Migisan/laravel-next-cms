@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import styles from "../styles/Home.module.css";
+import style from "../styles/index.module.scss";
 
 const Home: NextPage = () => {
   const message = useSelector((state: RootState) => state.test.message);
@@ -22,7 +23,7 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
           <br />
-          {message}
+          <span className={style.hello}>{message}</span>
         </h1>
 
         <p className={styles.description}>
