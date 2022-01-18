@@ -3,16 +3,12 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
-  useEffect(() => {
-    const fetch = async () => {
-      const res = await axios.get("http://localhost/api");
-      console.log(res);
-    };
-    fetch();
-  }, []);
+  const message = useSelector((state: RootState) => state.test.message);
 
   return (
     <div className={styles.container}>
@@ -25,6 +21,8 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
+          <br />
+          {message}
         </h1>
 
         <p className={styles.description}>

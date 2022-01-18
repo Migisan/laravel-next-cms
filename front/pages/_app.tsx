@@ -1,8 +1,16 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import { NextPage } from "next";
+import type { AppProps } from "next/app";
+import { Provider } from "react-redux";
+import { store } from "../store";
+import { App } from "./App";
+import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-}
+const MyApp: NextPage<AppProps> = (props) => {
+  return (
+    <Provider store={store}>
+      <App {...props} />
+    </Provider>
+  );
+};
 
-export default MyApp
+export default MyApp;
