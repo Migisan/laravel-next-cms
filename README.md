@@ -17,6 +17,8 @@ docker-compose exec front yarn dev
 docker-compose exec api /bin/sh
 // frontコンテナへアクセス
 docker-compose exec front /bin/sh
+// dbコンテナへアクセス
+docker-compose exec db mysql -u root -p
 
 // コンテナ停止
 docker-compose stop
