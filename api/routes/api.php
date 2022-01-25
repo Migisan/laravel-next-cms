@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AuthController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,12 +16,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/**
+ * サンプル
+ */
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/', function () {
+    return 'Hello World!';
+});
 
-Route::group(['middleware' => ['api', 'cors']], function () {
-    Route::get('/', function () {
-        return 'Hello World!';
-    });
+/**
+ * 認証
+ */
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout']);
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::post('/refresh', [AuthController::class, 'refresh']);
+    Route::get('/me', [AuthController::class, 'me']);
 });
